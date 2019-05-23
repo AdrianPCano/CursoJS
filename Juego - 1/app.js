@@ -13,7 +13,7 @@ var scrores, roundScore, activePlayer;
 
 score = [0,0];
 roundScore = 0;
-activePlayer = 1;
+activePlayer = 0;
 
 
 document.querySelector('.dice').style.display = 'none';	
@@ -35,10 +35,39 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 
 	// 3. Update the round score if the rolled number was not a 1.
+	if (dice !== 1) {
+		//Add Score
+		roundScore += dice;
+		//display Score
+		document.querySelector('#current-' + activePlayer).textContent = roundScore;
 
+	}else {
+		//Next Player
+		activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+		roundScore = 0;
+
+		document.getElementById('current-0').textContent = '0';
+		document.getElementById('current-1').textContent = '0';
+
+		document.querySelector('.player-0-panel').classList.toggle('active');
+		document.querySelector('.player-1-panel').classList.toggle('active');
+
+		//document.querySelector('.player-0-panel').classList.remove('active');
+		//document.querySelector('.player-1-panel').classList.add('active');
+
+		document.querySelector('.dice').style.display = 'none';
+	}
 });
 
+document.querySelector('.btn-hold').addEventListener.('click', function() {
+	// Add CURRENT Score to GLOBAL Score
+	scores[activePlayer] += roundScore;
 
+
+	// Update the UI
+
+	// Check if Player won the game
+})
 
 
 
