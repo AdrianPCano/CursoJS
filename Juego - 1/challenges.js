@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, lastRoll;
 
 init();
 
@@ -84,6 +84,7 @@ function init() {
 	activePlayer = 0;
 	roundScore = 0;
 	gamePlaying = true;
+	lastRoll = 0;
 
 	document.querySelector('.dice').style.display = 'none';	
 
