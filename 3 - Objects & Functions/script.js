@@ -1,4 +1,4 @@
-var john = {
+/*var john = {
 	name: 'john',
 	yearOfBirth: 1990,
 	job: 'teacher'
@@ -11,7 +11,7 @@ var Person = function (name, yearOfBirth, job) {
 }
 
 Person.prototype.calculateAge = this.calculateAge = function() {
-		console.log(2016 - this.yearOfBirth);
+		console.log(2019 - this.yearOfBirth);
 };
 
 Person.prototype.lastName = 'Smith';
@@ -26,7 +26,47 @@ mark.calculateAge();
 
 console.log(john.lastName);
 console.log(jane.lastName);
-console.log(mark.lastName);
+console.log(mark.lastName);*/
+
+
+// Object.create
+
+var personProto = {
+	calculateAge: function() {
+		console.log(2019 - this.yearOfBirth);
+	}
+};
+
+var john = Object.create(personProto);
+john.name = 'John';
+john.yearOfBirth = 1990;
+job = 'teacher';
+
+var jane = Object.create(personProto, {
+	name: { value: 'Jane'},
+	yearOfBirth: { value: 1988},
+	job: { value: 1986}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
