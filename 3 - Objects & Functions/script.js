@@ -132,7 +132,7 @@ console.log(fullAges);
 console.log(rates);
 */
 
-
+/*
 // Functions returning functions
 
 function intervewQuestion(job) {
@@ -157,27 +157,31 @@ var designerQuestion = intervewQuestion('designer');
 teacherQuestion('John');
 designerQuestion('Sara');
 intervewQuestion('teacher')('Adrian');
+*/
 
 
 
 
+// IIFE
 
 
+/*
+function game() {
+	var score = Math.random() * 10;
+	console.log(score >= 5);
+}
 
+game();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+(function ()  {
+	var score = Math.random() * 10;
+	console.log(score >= 5);
+}) ();
+*/
+(function (goodLuck)  {
+	var score = Math.random() * 10;
+	console.log(score >= 5 - goodLuck);
+}) (5);
 
 
 
