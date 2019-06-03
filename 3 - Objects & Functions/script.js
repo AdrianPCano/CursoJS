@@ -266,9 +266,30 @@ emilyFormal('afternoon');
 
 
 
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arrayEx, functEx) {
+	var arrRes = [];
+	for (var i = 0; i < arrayEx.length; i++) {
+		arrRes.push(functEx(arrayEx[i]));
+	}
+	return arrRes;
+}
+
+function calculateAge(element) {
+	return 2019 - element;
+}
 
 
+function isFullAge(limit, elementAge) {
+	return elementAge >= limit;
+}
 
+var ages = arrayCalc(years, calculateAge);
+
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
 
 
 
