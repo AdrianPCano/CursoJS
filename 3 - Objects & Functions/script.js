@@ -203,7 +203,6 @@ var retirementIceland = retirement(67);
 retirementUS(1990);
 retirementGermany(1990);
 retirementIceland(1990);
-*/
 
 function intervewQuestion(job) {
 	return function(name) {
@@ -227,12 +226,40 @@ teacherQuestion('John');
 designerQuestion('Sara');
 intervewQuestion('teacher')('Adrian');
 intervewQuestion('Futballer')('Messi');
+*/
 
 
+// Bind, call and apply
+
+var john = {
+	name: 'John',
+	age: 26,
+	job: 'teacher',
+	presentation: function(style, timeOfDay) {
+		if (style === 'formal') {
+			console.log('Good ' + timeOfDay + ' Ladies and Gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+		} else if (style === 'friendly') {
+			console.log('Hey what\'s up? I\'m  ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+		}
+	}
+};
+
+var emily = {
+	name: 'Emily',
+	age: 35,
+	job: 'nurse',
+};
+
+john.presentation('formal', 'evening');
+john.presentation.call(emily, 'friendly', 'afternoon');
 
 
+var johnFriendly = john.presentation.bind(john, 'friendly');
 
-
+johnFriendly('morning');
+johnFriendly('night');
+var emilyFormal =  john.presentation.bind(emily, 'formal');
+emilyFormal('afternoon');
 
 
 
