@@ -1,3 +1,5 @@
+//Function Constructor
+
 /*var john = {
 	name: 'john',
 	yearOfBirth: 1990,

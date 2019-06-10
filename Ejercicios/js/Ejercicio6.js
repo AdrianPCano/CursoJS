@@ -18,3 +18,23 @@ c) correct answer (I would use a number for this)
 
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 */
+
+
+function Question(question, answer, correctAnswer) {
+    this.question = question;
+    this.answer = answer;
+    this.correctAnswer = correctAnswer;
+};
+
+var firstQuestion = new Question('Who is the best footballer?', ['Lionel Messi', 'Kylian Mbappe', 'Cristiano Ronaldo'], 0);
+var secondQuestion = new Question('What was Mohammed Ali’s birth name?', ['Richard Clay', 'Cassius Clay', 'Jack Clay'], 1);
+var thirdQuestion = new Question('Who was known as the Maid of Orleans?', ['Joan of Bows', 'Christine of Arc', 'Joan of Arc'], 2)
+
+var questions = [firstQuestion, secondQuestion, thirdQuestion];
+
+
+
+var randomOne= randomQuestions[Math.floor(Math.random() * questions.length)];
+
+
+
