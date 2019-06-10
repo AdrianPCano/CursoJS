@@ -32,7 +32,15 @@ Question.prototype.displayQuestion = function() {
     for (var i = 0; i < this.answer.length; i++) {
 		console.log(i + ': ' + this.answer[i]);
 	}
-};
+}
+
+Question.prototype.checkAnswer = function(ans) {
+    if (ans === this.correctAnswer) {
+        console.log('Correct answer!');
+    } else {
+        console.log('Wrong answer, try again!');
+    }
+}
 
 var firstQuestion = new Question('Who is the best footballer?', ['Lionel Messi', 'Kylian Mbappe', 'Cristiano Ronaldo'], 0);
 var secondQuestion = new Question('What was Mohammed Ali’s birth name?', ['Richard Clay', 'Cassius Clay', 'Jack Clay'], 1);
@@ -47,3 +55,7 @@ var randomQuestion = Math.floor(Math.random() * questions.length);
 
 
 questions[randomQuestion].displayQuestion();
+
+var userAnswer = parseInt (prompt("Select the correct answer"));
+
+questions[randomQuestion].checkAnswer(userAnswer);
