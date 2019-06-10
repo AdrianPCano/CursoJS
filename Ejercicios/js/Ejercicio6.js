@@ -17,6 +17,16 @@ c) correct answer (I would use a number for this)
 6. Check if the answer is correct and print to the console whether the answer is correct ot nor (Hint: write another method for this).
 
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
+
+8. After you display the result, display the next random question, so that the game never ends 
+(Hint: write a function for this and call it right after displaying the result)
+
+9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game
+ if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
+
+10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
+
+11. Display the score in the console. Use yet another method for this.
 */
 
 (function() {
@@ -41,23 +51,29 @@ c) correct answer (I would use a number for this)
             console.log('Wrong answer, try again!');
         }
     }
-    
+
     var firstQuestion = new Question('Who is the best footballer?', ['Lionel Messi', 'Kylian Mbappe', 'Cristiano Ronaldo'], 0);
     var secondQuestion = new Question('What was Mohammed Ali’s birth name?', ['Richard Clay', 'Cassius Clay', 'Jack Clay'], 1);
-    var thirdQuestion = new Question('Who was known as the Maid of Orleans?', ['Joan of Bows', 'Christine of Arc', 'Joan of Arc'], 2)
+    var thirdQuestion = new Question('Who was known as the Maid of Orleans?', ['Joan of Bows', 'Christine of Arc', 'Joan of Arc'], 2);
+
+    function nextQuestion() {
     
-    var questions = [firstQuestion, secondQuestion, thirdQuestion];
-    
-    
-    
-    var randomQuestion = Math.floor(Math.random() * questions.length);
-    
-    
-    
-    questions[randomQuestion].displayQuestion();
-    
-    var userAnswer = parseInt (prompt("Select the correct answer"));
-    
-    questions[randomQuestion].checkAnswer(userAnswer);
+        var questions = [firstQuestion, secondQuestion, thirdQuestion];
+            
+        var randomQuestion = Math.floor(Math.random() * questions.length);
+        
+        questions[randomQuestion].displayQuestion();
+        
+        var userAnswer = prompt("Select the correct answer");
+        
+
+        if (userAnswer !== 'exit') {
+            questions[randomQuestion].checkAnswer(parseInt (userAnswer));
+            nextQuestion();
+        } 
+    }
+    nextQuestion();
 })();
+
+
 
