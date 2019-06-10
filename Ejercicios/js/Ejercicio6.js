@@ -24,7 +24,9 @@ c) correct answer (I would use a number for this)
 9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game
  if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
 
-10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
+10. Track the user's score to make the game more fun! So each time an answer is correct,
+ add 1 point to the score (Hint: I'm going to use the power of closures for this,
+ but you don't have to, just do this with the tools you feel more comfortable at this point).
 
 11. Display the score in the console. Use yet another method for this.
 */
@@ -44,31 +46,52 @@ c) correct answer (I would use a number for this)
         }
     }
     
-    Question.prototype.checkAnswer = function(ans) {
+    Question.prototype.checkAnswer = function(ans, callBack) {
         if (ans === this.correctAnswer) {
+            var currentScore;
+
             console.log('Correct answer!');
+            currentScore = callBack(true);
         } else {
             console.log('Wrong answer, try again!');
+            currentScore = callBack(false);
         }
+        this.displayScore(currentScore);
+    }
+
+    Question.prototype.displayScore = function(score) {
+        console.log('Your current score is: ' + score);
+        console.log('---------------------------------------');
     }
 
     var firstQuestion = new Question('Who is the best footballer?', ['Lionel Messi', 'Kylian Mbappe', 'Cristiano Ronaldo'], 0);
     var secondQuestion = new Question('What was Mohammed Ali’s birth name?', ['Richard Clay', 'Cassius Clay', 'Jack Clay'], 1);
     var thirdQuestion = new Question('Who was known as the Maid of Orleans?', ['Joan of Bows', 'Christine of Arc', 'Joan of Arc'], 2);
 
+    var questions = [firstQuestion, secondQuestion, thirdQuestion];
+
+    function score() {
+        var initialScore = 0;
+        return function(correct) {
+            if (correct) {
+                initialScore ++;
+            }
+            return initialScore;
+        }
+    }
+
+    var keepScore = score();
+
     function nextQuestion() {
-    
-        var questions = [firstQuestion, secondQuestion, thirdQuestion];
             
         var randomQuestion = Math.floor(Math.random() * questions.length);
         
         questions[randomQuestion].displayQuestion();
         
         var userAnswer = prompt("Select the correct answer");
-        
 
         if (userAnswer !== 'exit') {
-            questions[randomQuestion].checkAnswer(parseInt (userAnswer));
+            questions[randomQuestion].checkAnswer(parseInt (userAnswer), keepScore);
             nextQuestion();
         } 
     }
