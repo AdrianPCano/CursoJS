@@ -26,6 +26,14 @@ function Question(question, answer, correctAnswer) {
     this.correctAnswer = correctAnswer;
 };
 
+Question.prototype.displayQuestion = function() {
+    console.log(this.question);
+
+    for (var i = 0; i < this.answer.length; i++) {
+		console.log(i + ': ' + this.answer[i]);
+	}
+};
+
 var firstQuestion = new Question('Who is the best footballer?', ['Lionel Messi', 'Kylian Mbappe', 'Cristiano Ronaldo'], 0);
 var secondQuestion = new Question('What was Mohammed Ali’s birth name?', ['Richard Clay', 'Cassius Clay', 'Jack Clay'], 1);
 var thirdQuestion = new Question('Who was known as the Maid of Orleans?', ['Joan of Bows', 'Christine of Arc', 'Joan of Arc'], 2)
@@ -34,7 +42,8 @@ var questions = [firstQuestion, secondQuestion, thirdQuestion];
 
 
 
-var randomOne= randomQuestions[Math.floor(Math.random() * questions.length)];
+var randomQuestion = Math.floor(Math.random() * questions.length);
 
 
 
+questions[randomQuestion].displayQuestion();
